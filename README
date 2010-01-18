@@ -1,0 +1,11 @@
+atSuggest
+=========
+
+atSuggest is a simple helper script for Twitter that supplies a suggestion box below the Status Update text input with the names of any friends (Twitter's term for users one is following) that match the first characters one has begun typing following the @ symbol.
+
+The script was written by Nate Eagle and Ian McCracken as part of the latter's weekly instruction of the former.
+
+Using atSuggest
+===============
+
+atSuggest is a script for the GreaseMonkey extension for Firefox.
