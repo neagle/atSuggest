@@ -21,6 +21,7 @@ console.debug('Loading...');
 
 
 (function(){
+var jQuery = unsafeWindow.jQuery;
 
 unsafeWindow.jQuery(document).ready(function() {
 	console.debug('Ready.');
