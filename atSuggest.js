@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           atSuggest
 // @namespace      Twitter
-// @include        http://twitter.com
+// @include        http://twitter.com/*
 // ==/UserScript==
 
 console.debug('Loading...');
