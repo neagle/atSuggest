@@ -69,19 +69,6 @@ var Cookie = {
 
 Cookie.load();
 
-(function(){
-    var oldcookie = document.cookie,
-        newcookie = "testcookie=this is my cookie;";
-    document.cookie = newcookie;
-    var result = Cookie.get('testcookie');
-    document.cookie = oldcookie;
-});
-
-(function(){
-    Cookie.set('get test', 'test value');
-    var result = Cookie.get('get test');
-});
-
 function uniquify(myArray) {
     result = []; 
     for(var i=myArray.length-1;i>=0;i--) {
@@ -125,6 +112,7 @@ function loadTwitterUserNames(callback) {
         return Cookie.get('TwitterAutoComplete').split(',');
     }
 	console.debug('3');
+    console.debug(Cookie.get);
 	console.debug(Cookie.get('TwitterAutoComplete'));
     var cookieNames = Cookie.get('TwitterAutoComplete');
     if (cookieNames) {
