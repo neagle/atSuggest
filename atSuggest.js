@@ -4,34 +4,15 @@
 // @include        http://twitter.com/*
 // ==/UserScript==
 
-console.debug('Loading...');
-
-// Shouldn't need our own jQuery any more.
-/*
-(function(){
-    var GM_JQ = document.createElement('script');
-    GM_JQ.src = 'http://jquery.com/src/jquery-latest.js';
-    GM_JQ.type = 'text/javascript';
-    GM_JQ.addEventListener('load', onReady, false);
-    document.getElementsByTagName('head')[0].appendChild(GM_JQ);
-})();
-*/
-
-// console.debug(unsafeWindow.jQuery);
-
+// console.debug('Loading...');
 
 (function(){
 var jQuery = unsafeWindow.jQuery;
 
-unsafeWindow.jQuery(document).ready(function() {
-	console.debug('Ready.');
-	onReady();
-});
-
 var REGEX = /^@/;
 
 function onReady(){
-    console.debug('Loaded!');
+    // console.debug('Loaded!');
     loadTwitterUserNames(initializeEvents);
 }
 
@@ -81,11 +62,10 @@ function uniquify(myArray) {
 }
 
 function loadTwitterUserNames(callback) {
-	console.debug('Load Twitter User Names...');
+	// console.debug('Load Twitter User Names...');
     var TWITTER_USERNAMES = [];
-	console.debug('1');
     function loadFromAPI(cursorPosition, callback) {
-		console.debug('Loading from API...');
+		// console.debug('Loading from API...');
         var isFirstRequest = cursorPosition==-1;
         var remainingNames;
         // Get usernames
@@ -106,30 +86,20 @@ function loadTwitterUserNames(callback) {
                 }
             });
     }
-	console.debug('2');
     function loadFromCookie(callback) {
-		console.debug('Loading from Cookie...');
+		// console.debug('Loading from Cookie...');
         return Cookie.get('TwitterAutoComplete').split(',');
     }
-	console.debug('3');
-    console.debug(Cookie.get);
-	console.debug(Cookie.get('TwitterAutoComplete'));
     var cookieNames = Cookie.get('TwitterAutoComplete');
     if (cookieNames) {
         callback(cookieNames.split(','));
     } else {
         loadFromAPI(-1, callback);
     }
-	console.debug('4');
 }
-
-function myTestFunction(message) {
-	console.debug(message);
-}
-
 
 function initializeEvents(names) {
-	console.debug('Initialize Events...');
+	// console.debug('Initialize Events...');
     // TEMPORARY
     //Cookie.del('TwitterAutoComplete');
     // END TEMPORARY
@@ -208,5 +178,9 @@ function showNames(names) {
 function removePanel() {
     jQuery('#suggestedNames').remove();
 }
+
+unsafeWindow.jQuery(document).ready(function() {
+	onReady();
+});
 
 })();
