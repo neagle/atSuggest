@@ -100,10 +100,15 @@ function loadTwitterUserNames(callback) {
 
 function initializeEvents(names) {
 	// console.debug('Initialize Events...');
-    // TEMPORARY
-    //Cookie.del('TwitterAutoComplete');
-    // END TEMPORARY
     var statusInput = jQuery('#status');
+	// If user hits enter and there are suggested names displayed, complete with the first name displayed
+	statusInput.bind('keypress', function(e) {
+		if(e.keyCode == 13 && jQuery('#suggestedNames').length > 0) {
+			jQuery('#suggestedNames li:first').click();
+			return false;
+		}	
+	});
+	// Attach autocompletion actions to keyup event
     statusInput.bind('keyup', function(e) {
         var ta = e.currentTarget;
         var taPreceedingWords = ta.value.slice(0, ta.selectionStart).split(' ');
