@@ -101,12 +101,18 @@ function loadTwitterUserNames(callback) {
 function initializeEvents(names) {
 	// console.debug('Initialize Events...');
     var statusInput = jQuery('#status');
+	var nameAppend = '';
 	// If user hits enter and there are suggested names displayed, complete with the first name displayed
 	statusInput.bind('keypress', function(e) {
 		if(e.keyCode == 13 && jQuery('#suggestedNames').length > 0) {
+			nameAppend = ' ';
 			jQuery('#suggestedNames li:first').click();
+			nameAppend = '';
 			return false;
 		}	
+		if((e.charCode == 39 || e.charCode == 58 || e.charCode == 59 || e.charCode == 33 || e.charCode == 44 || e.charCode == 45 || e.charCode == 46 || e.charCode == 63) && jQuery('#suggestedNames').length > 0) {
+			jQuery('#suggestedNames li:first').click();
+		}
 	});
 	// Attach autocompletion actions to keyup event
     statusInput.bind('keyup', function(e) {
@@ -120,7 +126,7 @@ function initializeEvents(names) {
                 jQuery('#suggestedNames li').click(function(){
                     var remainingName = jQuery(this).text();
                     remainingName = remainingName.substring(taPreceedingWord.length - 1);
-                    ta.value = ta.value.substring(0, cursorLocation) + remainingName + ta.value.substring(cursorLocation);
+                    ta.value = ta.value.substring(0, cursorLocation) + remainingName + nameAppend + ta.value.substring(cursorLocation);
                     cursorLocation += remainingName.length + 1;
                     statusInput.focus().attr({'selectionStart' : cursorLocation, 'selectionEnd' : cursorLocation});
                     removePanel();
