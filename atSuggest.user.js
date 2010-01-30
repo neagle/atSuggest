@@ -137,7 +137,7 @@ function initializeEvents(names) {
 
 function autoComplete(word, index, names) {
     var name = word.substring(1);
-    var r = new RegExp('^'+name);
+    var r = new RegExp('^'+name, 'i');
     var matchList = [];
     jQuery.each(names, function(i, n){
         if(n.match(r)) {
