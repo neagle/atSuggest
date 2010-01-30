@@ -120,7 +120,7 @@ function initializeEvents(names) {
                 jQuery('#suggestedNames li').click(function(){
                     var remainingName = jQuery(this).text();
                     remainingName = remainingName.substring(taPreceedingWord.length - 1);
-                    ta.value = ta.value.substring(0, cursorLocation) + remainingName + ' ' + ta.value.substring(cursorLocation);
+                    ta.value = ta.value.substring(0, cursorLocation) + remainingName + ta.value.substring(cursorLocation);
                     cursorLocation += remainingName.length + 1;
                     statusInput.focus().attr({'selectionStart' : cursorLocation, 'selectionEnd' : cursorLocation});
                     removePanel();
